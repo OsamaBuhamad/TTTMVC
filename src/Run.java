@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class Run {
 	
 	public Run(){
@@ -8,38 +8,55 @@ public class Run {
 	
 	public static void main(String args[]){
 		
-		TTTModel m = new TTTModel(3);
+		Scanner user_input = new Scanner( System.in );
+		int size=0;
+		System.out.print("Enter your board size: ");
+		size = user_input.nextInt( );
+		TTTModel m = new TTTModel(size);
 		m.printBoard();
-		m.play(0,0);//x
-		//m.printBoard();
-		System.out.println("is Horz: "+m.isHorizotal());
-		System.out.println("is Ver: "+m.isVertical());
-		System.out.println("is Diag: "+m.isDiag());
-		System.out.println("is still??? "+ m.isStillRuning());
-		m.play(1,1);//o
-		//m.printBoard();
-		System.out.println("is Horz: "+m.isHorizotal());
-		System.out.println("is Ver: "+m.isVertical());
-		System.out.println("is Diag: "+m.isDiag());
-		System.out.println("is still??? "+ m.isStillRuning());
-		m.play(0,1);//x
-		//m.printBoard();
-		System.out.println("is Horz: "+m.isHorizotal());
-		System.out.println("is Ver: "+m.isVertical());
-		System.out.println("is Diag: "+m.isDiag());
-		System.out.println("is still??? "+ m.isStillRuning());
-		m.play(1,0);//o
-		//m.printBoard();
-		System.out.println("is Horz: "+m.isHorizotal());
-		System.out.println("is Ver: "+m.isVertical());
-		System.out.println("is Diag: "+m.isDiag());
-		System.out.println("is still??? "+ m.isStillRuning());
-		m.play(0,2);//x
-		//m.printBoard();
-		System.out.println("is Horz: "+m.isHorizotal());
-		System.out.println("is Ver: "+m.isVertical());
-		System.out.println("is Diag: "+m.isDiag());
-		System.out.println("is still??? "+ m.isStillRuning());
+		int row,col;
+		while(m.isRunning()){
+			System.out.print("Enter row: ");
+			row = user_input.nextInt( );
+			System.out.print("Enter col: ");
+			col = user_input.nextInt( ); 
+			m.play(row, col);
+		}
+		
+//		m.play(0,0);//x
+//		//m.printBoard();
+//		System.out.println("is Horz: "+m.isHorizotal());
+//		System.out.println("is Ver: "+m.isVertical());
+//		System.out.println("is Diag: "+m.isDiag());
+//		System.out.println("is still??? "+ m.isRunning());
+//		m.play(1,1);//o
+//		//m.printBoard();
+//		System.out.println("is Horz: "+m.isHorizotal());
+//		System.out.println("is Ver: "+m.isVertical());
+//		System.out.println("is Diag: "+m.isDiag());
+//		System.out.println("is still??? "+ m.isRunning());
+//		m.play(1,0);//x
+//		//m.printBoard();
+//		System.out.println("is Horz: "+m.isHorizotal());
+//		System.out.println("is Ver: "+m.isVertical());
+//		System.out.println("is Diag: "+m.isDiag());
+//		System.out.println("is still??? "+ m.isRunning());
+//		m.play(1,2);//o
+//		//m.printBoard();
+//		System.out.println("is Horz: "+m.isHorizotal());
+//		System.out.println("is Ver: "+m.isVertical());
+//		System.out.println("is Diag: "+m.isDiag());
+//		System.out.println("is still??? "+m.isRunning());
+//		m.play(2,0);//x
+//		//m.printBoard();
+//		System.out.println("is Horz: "+m.isHorizotal());
+//		System.out.println("is Ver: "+m.isVertical());
+//		System.out.println("is Diag: "+m.isDiag());
+//		System.out.println("is still??? "+ m.isRunning());
+//		
+//		
+//
+//		while 
 
 	}
 

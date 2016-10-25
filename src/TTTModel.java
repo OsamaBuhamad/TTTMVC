@@ -70,7 +70,7 @@ public class TTTModel extends Observable{
 					
 				}
 				printBoard();
-				status(); 
+				isRunning(); 
 				changeTurn();
 				
 			
@@ -80,18 +80,25 @@ public class TTTModel extends Observable{
 	}
 	
 	public boolean isVertical(){
-		boolean horz=true;
-		
+		boolean horz;
+		int count=0;
 		for(int i=0;i<size-1;i++){
 			for (int j=0;j<size;j++ ){
-				if((!board[i][j].equals(board[i+1][j]) && (!board[i][j].equals("*")) )){
-					horz = false;
+				if((board[i][j].equals(board[i+1][j])) && ! board[i][j].equals("*") ){
+					count++;
+					System.out.println("ver count: "+count);
 				}
+				
+				if(count ==size-1)
+					return horz=true;
 			}
 			
 		}
 		
-		return horz;
+		
+			
+			return horz =false;
+	
 	}
 	
 	public boolean isHorizotal(){
@@ -113,36 +120,38 @@ public class TTTModel extends Observable{
 	}
 	
 	public boolean isDiag(){
-		boolean diag= true;
-		
+		boolean diag;
+		int count =0;
 		for(int i=0; i<size-1;i++){
-			if (! board[i][i].equals(board[i+1][i+1]) || board[i].equals("*"))
-				diag=false;
+			if ( board[i][i].equals(board[i+1][i+1]) && ! board[i].equals("*"))
+				count++;
 			
 		}
 	
 		for(int i= 0, j=size-1; i< size-1 && j>=1 ; i++, j--){
-			if(! board[i][j].equals(board[i+1][j-1]) || board[i][j].equals("*") )
-				diag=false;
+			if( board[i][j].equals(board[i+1][j-1]) && ! board[i][j].equals("*") )
+				count++;
 		}
-		return diag;
+		
+		if(count ==size)
+			return diag=true;
+			
+			return diag =false;
+		
 	}
 	
 	
-	public void status(){
-		if(isDiag() || isHorizotal() || isVertical()){
-			System.out.println("Player: "+getPlayerChar()+" has won!");
-		return;
-		}	
-		if(!isStillRuning()){
-			System.out.println("Game over");
-			return;
+	public boolean isRunning(){
+		if (!isWon() && isEmptyPositions())
+			return true;
+		return false;
 		}
+	
 		
 		
-	}
 
-	public boolean isStillRuning() {
+
+	public boolean isEmptyPositions() {
 		
 		 
 		boolean running =false;
@@ -156,6 +165,14 @@ public class TTTModel extends Observable{
 			}
 		}
 		return running ;
+	}
+	
+	public boolean isWon(){
+		if(isDiag() || isHorizotal() || isVertical()){
+			System.out.println("Player: "+getPlayerChar()+" has won!");
+		return true;
+		}	
+		return false;
 	}
 
 }
