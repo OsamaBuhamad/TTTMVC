@@ -78,7 +78,8 @@ public class TTTModel extends Observable{
 						changeTurn();
 					}
 					printBoard();
-					
+					this.setChanged();
+					this.notifyObservers();
 					
 				}
 			
@@ -204,6 +205,10 @@ public class TTTModel extends Observable{
 		return true;
 		}	
 		return false;
+	}
+	
+	public String getElement(int row, int col){
+		return board[row][col];
 	}
 
 }

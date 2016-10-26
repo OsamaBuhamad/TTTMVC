@@ -8,6 +8,11 @@ public class Run {
 	
 	public static void main(String args[]){
 		
+		
+		/**
+		 * console test of the model 
+		 */
+		/*
 		Scanner user_input = new Scanner( System.in );
 		int size=0;
 		System.out.print("Enter your board size: ");
@@ -22,47 +27,24 @@ public class Run {
 			col = user_input.nextInt( ); 
 			m.play(row, col);
 			
-//			System.out.println("is Horz: "+m.isHorizotal());
-//			System.out.println("is Ver: "+m.isVertical());
-//			System.out.println("is Diag: "+m.isDiag());
-//			System.out.println("is still??? "+ m.isRunning());
-		}
+	}
+	*/
 		
-//		m.play(0,0);//x
-//		//m.printBoard();
-//		System.out.println("is Horz: "+m.isHorizotal());
-//		System.out.println("is Ver: "+m.isVertical());
-//		System.out.println("is Diag: "+m.isDiag());
-//		System.out.println("is still??? "+ m.isRunning());
-//		m.play(1,1);//o
-//		//m.printBoard();
-//		System.out.println("is Horz: "+m.isHorizotal());
-//		System.out.println("is Ver: "+m.isVertical());
-//		System.out.println("is Diag: "+m.isDiag());
-//		System.out.println("is still??? "+ m.isRunning());
-//		m.play(1,0);//x
-//		//m.printBoard();
-//		System.out.println("is Horz: "+m.isHorizotal());
-//		System.out.println("is Ver: "+m.isVertical());
-//		System.out.println("is Diag: "+m.isDiag());
-//		System.out.println("is still??? "+ m.isRunning());
-//		m.play(1,2);//o
-//		//m.printBoard();
-//		System.out.println("is Horz: "+m.isHorizotal());
-//		System.out.println("is Ver: "+m.isVertical());
-//		System.out.println("is Diag: "+m.isDiag());
-//		System.out.println("is still??? "+m.isRunning());
-//		m.play(2,0);//x
-//		//m.printBoard();
-//		System.out.println("is Horz: "+m.isHorizotal());
-//		System.out.println("is Ver: "+m.isVertical());
-//		System.out.println("is Diag: "+m.isDiag());
-//		System.out.println("is still??? "+ m.isRunning());
-//		
-//		
-//
-//		while 
+		
+		/**
+		 * MVC 
+		 */
+		Scanner user_input = new Scanner( System.in );
+		int size=0;
+		System.out.print("Enter your board size: ");
+		size = user_input.nextInt( );
+		TTTModel model = new TTTModel(size);
+		TTTController controller = new TTTController(model);
+		
+		TTTView view = new TTTView(size, controller);
+		controller.setView(view);
+		model.addObserver(view);
+		
 
 	}
-
 }
