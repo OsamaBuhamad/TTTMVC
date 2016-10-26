@@ -17,8 +17,17 @@ public class TTTController implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		
+		String restart = view.getRestart().getActionCommand();
+		
+		
 		String actionL = arg0.getActionCommand();
+		
+		if(actionL.equals(restart)){
+			model.initBoard();
+
+			return;
+		}
 		String[] turns = actionL.split(" ");
 		int row = Integer.parseInt(turns[0]);
 		int col = Integer.parseInt(turns[1]);

@@ -10,16 +10,17 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 
 public class TTTView extends JFrame implements Observer {
-	private TTTModel model;
+
 	private int size;
 	private JButton[][] b;
 	private JButton reset;
 	private ActionListener action;
 	JPanel panel;
-	
+	JTextArea textarea;
 	public TTTView(int size,ActionListener action){
 		
 		this.size=size;
@@ -27,12 +28,12 @@ public class TTTView extends JFrame implements Observer {
 		JFrame tttFrame = new JFrame("TicTacToe Game!");
 		tttFrame.setSize(300,300);
 		tttFrame.setLayout(new BorderLayout());
-		
+		 textarea = new JTextArea();
 		
 		panel = new JPanel(); 
 		panel.setLayout(new GridLayout(size,size));
 		
-		reset = new JButton("reset!");
+		reset = new JButton("restart");
 	    reset.setBackground(Color.white);
 	    reset.addActionListener(action);
 	    tttFrame.getContentPane().add(reset, BorderLayout.SOUTH);
@@ -48,11 +49,19 @@ public class TTTView extends JFrame implements Observer {
 				b[i][j].setActionCommand(""+i+" "+j);
 			}
 		}
+		
+		textarea.setEditable(false);
+		//panel.add(textarea); 
+		tttFrame.getContentPane().add(textarea, BorderLayout.NORTH);
 		tttFrame.getContentPane().add(panel, BorderLayout.CENTER);
 	    tttFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tttFrame.setVisible(true);
 		
 
+	}
+	
+	public JButton getRestart(){
+		return reset;
 	}
 
 	@Override
