@@ -6,14 +6,17 @@ public class TTTModel extends Observable{
 	private int size,row, col;
 	private boolean turn;
 	private String playerchar="O";
-
+	//private int countlist[]; 
+	
 	public TTTModel(int size){
 		board = new String [size][size];
 
 		this.size=size;
 		row=0;
 		col=0;
-		
+		//countlist = new int[2];
+		//countlist[0]=0;
+		//countlist[1]=0;
 		initBoard();
 	}
 	
@@ -60,80 +63,106 @@ public class TTTModel extends Observable{
 		if(row > size || col > size){
 			System.out.println("wrong coordinate fam!");
 		}else{
-			this.row=row;
-			this.col=col;
-			if(board[row][col].equals("*")){
-				if (turn){
-					board[row][col]=getPlayerChar();
-				}else{
-					board[row][col]=getPlayerChar();
+			
+			
+				this.row=row;
+				this.col=col;
+				if(board[row][col].equals("*")){
+					if (turn){
+						board[row][col]=getPlayerChar();
+					}else{
+						board[row][col]=getPlayerChar();
+						
+					}
+					if(isRunning()){
+						changeTurn();
+					}
+					printBoard();
+					
 					
 				}
-				printBoard();
-				isRunning(); 
-				changeTurn();
-				
 			
-				
-			}
+
 		}
 	}
 	
 	public boolean isVertical(){
-		boolean horz;
-		int count=0;
+		boolean ver;
+		int count1=0;
+		int count2=0;
 		for(int i=0;i<size-1;i++){
 			for (int j=0;j<size;j++ ){
 				if((board[i][j].equals(board[i+1][j])) && ! board[i][j].equals("*") ){
-					count++;
-					System.out.println("ver count: "+count);
+					if(board[i][j].equals("X")){
+						count1++;
+					}else if(board[i][j].equals("O")){
+						count2++;
+					}
 				}
-				
-				if(count ==size-1)
-					return horz=true;
+					
 			}
 			
 		}
 		
-		
+		if(count1 ==size-1 || count2==size-1){
+			return ver=true;
+		}
 			
-			return horz =false;
+			return ver =false;
 	
 	}
 	
 	public boolean isHorizotal(){
-		boolean ver;
-		int count =0;
+		boolean hor;
+		int count1 =0; 
+		int count2 =0;
 		for(int i=0;i<size;i++){
 			for (int j=0;j<size-1;j++ ){
 				if((board[i][j].equals(board[i][j+1])) && !board[i][j].equals("*") ){
-					count++;
+					if(board[i][j].equals("X")){
+						count1++;
+					}else if(board[i][j].equals("O")){
+						count2++;
+					}
+					
 				}
 			}
 			
 		}
+
+		if(count1 ==size-1||count2==size-1){
+			
+			return hor=true;
+		}
 		
-		if(count ==size)
-		return ver=true;
 		
-		return ver =false;
+		return hor =false;
 	}
 	
 	public boolean isDiag(){
 		boolean diag;
-		int count =0;
+		int count1 =0; 
+		int count2 =0;
 		for(int i=0; i<size-1;i++){
 			if ( board[i][i].equals(board[i+1][i+1]) && ! board[i].equals("*"))
-				count++;
+				if(board[i][i].equals("X")){
+					count1++;
+				}else if(board[i][i].equals("O")){
+					count2++;
+				}
 			
 		}
 	
 		for(int i= 0, j=size-1; i< size-1 && j>=1 ; i++, j--){
 			if( board[i][j].equals(board[i+1][j-1]) && ! board[i][j].equals("*") )
-				count++;
+				if(board[i][j].equals("X")){
+					count1++;
+				}else if(board[i][j].equals("O")){
+					count2++;
+				}
 		}
-		
-		if(count ==size)
+
+		if(count1 ==size-1 || count2==size-1)
 			return diag=true;
 			
 			return diag =false;
@@ -142,8 +171,10 @@ public class TTTModel extends Observable{
 	
 	
 	public boolean isRunning(){
-		if (!isWon() && isEmptyPositions())
+		if (!isWon() && isEmptyPositions()){
+			
 			return true;
+			}
 		return false;
 		}
 	
@@ -159,7 +190,7 @@ public class TTTModel extends Observable{
 			for (int j=0;j<size-1;j++ ){
 				if(board[i][j].equals("*") ){
 				
-					running  = true;
+					return true;
 					
 				}
 			}
@@ -168,7 +199,7 @@ public class TTTModel extends Observable{
 	}
 	
 	public boolean isWon(){
-		if(isDiag() || isHorizotal() || isVertical()){
+		if( isVertical()||isHorizotal() ||isDiag()){
 			System.out.println("Player: "+getPlayerChar()+" has won!");
 		return true;
 		}	

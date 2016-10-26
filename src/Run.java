@@ -21,6 +21,11 @@ public class Run {
 			System.out.print("Enter col: ");
 			col = user_input.nextInt( ); 
 			m.play(row, col);
+			
+//			System.out.println("is Horz: "+m.isHorizotal());
+//			System.out.println("is Ver: "+m.isVertical());
+//			System.out.println("is Diag: "+m.isDiag());
+//			System.out.println("is still??? "+ m.isRunning());
 		}
 		
 //		m.play(0,0);//x
