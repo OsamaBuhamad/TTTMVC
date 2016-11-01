@@ -43,6 +43,8 @@ public class Run {
 		
 		TTTView view = new TTTView(size, controller);
 		controller.setView(view);
+		
+		//view.setModel(model);
 		model.addObserver(view);
 		
 

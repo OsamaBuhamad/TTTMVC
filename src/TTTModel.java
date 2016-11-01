@@ -54,6 +54,7 @@ public class TTTModel extends Observable{
 			playerchar ="X";
 			//board[row][col]=playerchar;
 		}
+		
 		return playerchar;
 	}
 	

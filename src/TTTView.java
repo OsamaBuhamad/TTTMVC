@@ -21,14 +21,16 @@ public class TTTView extends JFrame implements Observer {
 	private ActionListener action;
 	JPanel panel;
 	JTextArea textarea;
+	private TTTModel model;
 	public TTTView(int size,ActionListener action){
 		
 		this.size=size;
 		this.action = action;
+		
 		JFrame tttFrame = new JFrame("TicTacToe Game!");
 		tttFrame.setSize(300,300);
 		tttFrame.setLayout(new BorderLayout());
-		 textarea = new JTextArea();
+		 textarea = new JTextArea("Current Player: ");
 		
 		panel = new JPanel(); 
 		panel.setLayout(new GridLayout(size,size));
@@ -64,28 +66,34 @@ public class TTTView extends JFrame implements Observer {
 		return reset;
 	}
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		TTTModel model = (TTTModel)arg0;
-		for(int i=0;i<size;i++){
-			for(int j=0; j<size;j++){
-				b[i][j].setText(model.getElement(i, j));
-			}
-		}
-		
-	}
+
+
 	
 	public static void main(String args[]){
 		ActionListener a = new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
+
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
 			}
+			
+
 		}; 
 		TTTView f = new TTTView(3,a);
+	}
+
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		TTTModel model = (TTTModel)arg0;
+		
+		for(int i=0;i<size;i++){
+			for(int j=0; j<size;j++){
+				
+				b[i][j].setText(model.getElement(i, j));
+			}
+		}
+		 textarea.setText("Currnet Player: "+model.getPlayerChar());
+		
 	}
 
 }
